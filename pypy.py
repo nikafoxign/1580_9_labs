@@ -1,7 +1,8 @@
 TimeInList = input().split()
 Chasi = int(TimeInList[1])
 Minuti = int(TimeInList[2])
-SlovoForResultHours=0
+SlovoForResultHours = 0
+
 
 def hours():
     global SlovoForResultHours
@@ -15,10 +16,12 @@ def hours():
         SlovoForResultHours = "часа"
     return SlovoForResultHours
 
+
 def minut():
     global SlovoForResultHours
-    if Minuti == 1:
+    if not Minuti == 1 or 11 or 21 or 31 or 41 or 51: 
         SlovoForResultHours = "минута"
+
 
     if 1 < Minuti < 5:
         SlovoForResultHours = "минут"
