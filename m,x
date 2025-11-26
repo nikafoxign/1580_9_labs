@@ -1,0 +1,17 @@
+print("Вводить время ЧИСЛАМИ в формате [ЧАСЫ] [МИНУТЫ] [СДВИГ]")
+
+TimeInList = input().split()
+if len(TimeInList) != 3:
+    print("Не корректное количество аргументов.")
+    exit()
+
+Hours = int(TimeInList[0])
+Minute = int(TimeInList[1])
+Bias = int(TimeInList[2])
+
+Hours = Hours + Bias
+
+if Hours >= 24:
+    Hours = Hours - 24
+
+print(str(Hours)+" "+str(Minute))
