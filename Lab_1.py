@@ -1,3 +1,5 @@
+print("Вводить время ЧИСЛАМИ в формате [ЧАСЫ] [МИНУТЫ]")
+
 TimeInList = input().split()
 if len(TimeInList) != 2:
     print("Не корректное количество аргументов.")
@@ -8,7 +10,7 @@ Minute = int(TimeInList[1])
 
 
 def IsCorrect(InHours, InMinute):
-    if InHours > 23 or InHours < 0 or TimeInList[0] != 0:
+    if InHours > 23 or InHours < 0 or TimeInList[0] == "-0":
         print("Введены недопустимые данные: часы должны быть от 0 до 23.")
         return False
     if InMinute > 59 or InMinute < 0:
@@ -49,6 +51,7 @@ def TextMinute(InMinute):
         return ""
 
     match InMinute:
+
         case 1:
             FinalTextMinute = "минута"
         case 21:
