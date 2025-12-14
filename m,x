@@ -1,17 +1,59 @@
-print("Вводить время ЧИСЛАМИ в формате [ЧАСЫ] [МИНУТЫ] [СДВИГ]")
+def IsCorrect(Hour,Minute,DeltaHour):
+    if Hour<0 or Hour>=24:
+        return False,"Введено не правильно количество часов (Нужно целое число в диапазоне от 0 до 24)"
 
-TimeInList = input().split()
-if len(TimeInList) != 3:
-    print("Не корректное количество аргументов.")
-    exit()
 
-Hours = int(TimeInList[0])
-Minute = int(TimeInList[1])
-Bias = int(TimeInList[2])
+    if Minute<0 or Minute>=60:
+        return False,"Введено не правильно количество минут (Нужно целое число в диапазоне от 0 до 60)"
 
-Hours = Hours + Bias
+    if DeltaHour<-12 or DeltaHour>13:
+        return False, "Введено не правильно смещение количество часов (Нужно целое число в диапазоне от -12 до 13)"
 
-if Hours >= 24:
-    Hours = Hours - 24
+    return True,""
 
-print(str(Hours)+" "+str(Minute))
+def TimeCalc(H,DeltaHour):
+    Result=H+DeltaHour
+    if 0<=Result<24:
+        return Result
+    else:
+        if 0>Result:
+            Result=Result+24
+            return Result
+        if  Result>24:
+            Result=Result-24
+            return Result
+
+
+
+
+def main():
+    UserInput=input().split()
+    if len(UserInput)==3:
+        Hour=int(UserInput[0])
+        Minute=int(UserInput[1])
+        DeltaHour=int(UserInput[2])
+    else:
+        print("Введено неверное количество аргументов")
+        return
+    if IsCorrect(Hour,Minute,DeltaHour)[0]:
+        print("Часы:",TimeCalc(Hour,DeltaHour),"Минуты:",Minute)
+    else:
+        print(IsCorrect(Hour,Minute,DeltaHour)[1])
+
+if __name__ == "__main__":
+    main()
+
+
+# Получаем данные от пользователя
+#
+# Если количество блоков данных равно 3:
+#   Записываем данные
+#Иначе
+#   Выводим "ошибка количества аргументов"
+#
+# 
+#Если данные введены корректно
+#   Вычисляем новые часы
+#   Выводим результат
+# Иначе:
+#   Выводим сообщение об ошибке
